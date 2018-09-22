@@ -35,7 +35,9 @@
  */
 
 // Use composer autoload.
-require 'vendor/autoload.php';
+if ( ! class_exists( 'Puc_v4_Factory' ) ) {
+	require_once __DIR__ . 'vendor/autoload.php';
+}
 
 /**
  * Main initiation class.
