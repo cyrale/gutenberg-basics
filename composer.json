@@ -1,0 +1,36 @@
+{
+  "name": "gutenberg-basics",
+  "description": "Modifications on Gutenberg.",
+  "keywords": [
+    "wordpress",
+    "plugin",
+    "generator-plugin-wp"
+  ],
+  "homepage": "https://github.com/cyrale/gutenberg-basics",
+  "license": "GPL+2.0",
+  "authors": [
+    {
+      "name": "Cyrale",
+      "email": "cyril@jacquesson.me"
+    }
+  ],
+  "support"    : {
+    "issues": "https://github.com/cyrale/gutenberg-basics/issues",
+    "source": "https://github.com/cyrale/gutenberg-basics"
+  },
+  "type": "wordpress-plugin",
+  "autoload": {
+    "classmap": [
+      "gutenberg-basics.php",
+      "includes/"
+    ]
+  },
+  "require": {
+    "yahnis-elsts/plugin-update-checker": "^4.4"
+  },
+  "require-dev": {
+    "squizlabs/php_codesniffer": "^3.3",
+    "wp-coding-standards/wpcs": "^1.1",
+    "dealerdirect/phpcodesniffer-composer-installer": "^0.4.4"
+  }
+}
