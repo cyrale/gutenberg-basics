@@ -51,7 +51,7 @@ class GB_Admin {
 			'gutenberg-basics-admin',
 			$this->plugin->url . 'dist/js/admin.js',
 			[ 'wp-blocks' ],
-			sha1( filemtime( $this->plugin->path . 'dist/js/admin.js' ) ),
+			sha1( filemtime( $this->plugin->path . 'dist/js/app.js' ) ),
 			true
 		);
 		wp_localize_script(
@@ -61,13 +61,6 @@ class GB_Admin {
 				'whitelistedBlocks' => $this->plugin->block_settings->default_blocks_per_post_types(),
 				'headings'          => $this->plugin->block_settings->get_headings(),
 			]
-		);
-
-		wp_enqueue_style(
-			'gutenberg-basics-admin',
-			$this->plugin->url . 'dist/css/admin.css',
-			[ 'wp-blocks' ],
-			sha1( filemtime( $this->plugin->path . 'dist/css/admin.css' ) )
 		);
 	}
 }
