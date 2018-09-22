@@ -16,20 +16,27 @@ Modifications on Gutenberg.
 ### Manual Installation ###
 
 1. Upload the entire `/gutenberg-basics` directory to the `/wp-content/plugins/` directory.
-2. Activate Gutenberg Basics through the 'Plugins' menu in WordPress.
+2. Run `composer insall` inside the plugin directory.
+3. Activate Gutenberg Basics through the 'Plugins' menu in WordPress.
 
-## Frequently Asked Questions ##
+### Composer installation
 
+```
+{
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/cyrale/gutenberg-basics"
+    }
+  ]
+}
+```
 
-## Screenshots ##
-
+1. Add above repository to `composer.json`.
+2. Run `composer require cyrale/gutenberg-basics`.
+3. Activate Gutenberg Basics through the 'Plugins' menu in WordPress.
 
 ## Changelog ##
 
 ### 1.0.0 ###
 * First release
-
-## Upgrade Notice ##
-
-### 1.0.0 ###
-First Release
