@@ -1,5 +1,6 @@
 {
   "name": "cyrale/gutenberg-basics",
+  "version": "1.0.1",
   "description": "Modifications on Gutenberg.",
   "keywords": [
     "wordpress",

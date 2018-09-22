@@ -38,5 +38,8 @@ Modifications on Gutenberg.
 
 ## Changelog ##
 
+### 1.0.1 ###
+* Improve functioning
+
 ### 1.0.0 ###
 * First release
