@@ -151,12 +151,6 @@ final class Gutenberg_Basics {
 		$this->path     = plugin_dir_path( __FILE__ );
 
 		$this->block_settings = new GB_Block_Settings( $this );
-
-		Puc_v4_Factory::buildUpdateChecker(
-			'https://github.com/cyrale/gutenberg-basics',
-			__FILE__,
-			'gutenberg-basics'
-		);
 	}
 
 	/**
@@ -344,3 +338,10 @@ add_action( 'plugins_loaded', [ gutenberg_basics(), 'hooks' ] );
 // Activation and deactivation.
 register_activation_hook( __FILE__, [ gutenberg_basics(), 'plugin_activate' ] );
 register_deactivation_hook( __FILE__, [ gutenberg_basics(), 'plugin_deactivate' ] );
+
+// Update checker.
+Puc_v4_Factory::buildUpdateChecker(
+	'https://github.com/cyrale/gutenberg-basics',
+	__FILE__,
+	'gutenberg-basics'
+);
