@@ -191,9 +191,6 @@ final class Gutenberg_Basics {
 		if ( ! $this->check_requirements() ) {
 			return;
 		}
-
-		// Make sure any rewrite functionality has been loaded.
-		flush_rewrite_rules();
 	}
 
 	/**
