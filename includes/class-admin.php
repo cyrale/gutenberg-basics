@@ -48,14 +48,14 @@ class GB_Admin {
 	 */
 	public function enqueue_block_editor_assets() {
 		wp_enqueue_script(
-			'gutenberg-basics-admin',
-			$this->plugin->url . 'dist/js/admin.js',
+			'gutenberg-basics',
+			$this->plugin->url . 'dist/js/app.js',
 			[ 'wp-blocks' ],
 			sha1( filemtime( $this->plugin->path . 'dist/js/app.js' ) ),
 			true
 		);
 		wp_localize_script(
-			'gutenberg-basics-admin',
+			'gutenberg-basics',
 			'gutenbergBasicsSettings',
 			[
 				'whitelistedBlocks' => $this->plugin->block_settings->default_blocks_per_post_types(),

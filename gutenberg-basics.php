@@ -159,7 +159,7 @@ final class Gutenberg_Basics {
 	 * @since  1.0.0
 	 */
 	public function plugin_classes() {
-		$this->admin  = new GB_Admin( $this );
+		$this->admin = new GB_Admin( $this );
 	} // END OF PLUGIN CLASSES FUNCTION
 
 	/**
