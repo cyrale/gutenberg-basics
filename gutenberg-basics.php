@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Gutenberg basics
+ * Plugin Name: Gutenberg Basics
  * Plugin URI:  https://github.com/cyrale/gutenberg-basics
  * Description: Modifications on Gutenberg.
  * Version:     1.0.0
