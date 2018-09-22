@@ -3,8 +3,8 @@
   "description": "Modifications on Gutenberg.",
   "keywords": [
     "wordpress",
-    "plugin",
-    "generator-plugin-wp"
+    "wordpress-plugin",
+    "gutenberg"
   ],
   "homepage": "https://github.com/cyrale/gutenberg-basics",
   "license": "GPL+2.0",
