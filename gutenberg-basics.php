@@ -280,7 +280,7 @@ final class Gutenberg_Basics {
 		// Compile default message.
 		// translators: link to the list of all plugins.
 		$default_message = __(
-			'Gutenberg basics is missing requirements and has been <a href="%s">deactivated</a>. Please make sure all requirements are available.',
+			'Gutenberg Basics is missing requirements and has been <a href="%s">deactivated</a>. Please make sure all requirements are available.',
 			'gutenberg-basics'
 		);
 		$default_message = sprintf( $default_message, admin_url( 'plugins.php' ) );
