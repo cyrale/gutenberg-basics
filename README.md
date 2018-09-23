@@ -2,8 +2,8 @@
 **Contributors:**      Cyrale  
 **Tags:**              Gutenberg, WordPress  
 **Requires at least:** 4.9  
-**Tested up to:**      4.9.8 
-**Stable tag:**        1.0.0  
+**Tested up to:**      4.9.8  
+**Stable tag:**        1.1.0  
 **License:**           GPL2  
 **License URI:**       http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -38,8 +38,4 @@ Modifications on Gutenberg.
 
 ## Changelog ##
 
-### 1.0.1 ###
-* Improve functioning
-
-### 1.0.0 ###
-* First release
+[See details](https://github.com/cyrale/gutenberg-basics/blob/master/CHANGELOG.md)

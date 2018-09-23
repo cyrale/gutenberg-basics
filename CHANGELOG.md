@@ -1,9 +1,21 @@
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/cyrale/gutenberg-basics/tree/1.1.0) (2018-09-23)
+
+### Features
+
+* Override button to remove text color option.
+
+### Bug fixes
+
+* More mandatory blocks
+* Return not indexed arrays
+
 <a name="1.0.1"></a>
-# [1.0.1 ](https://github.com/cyrale/gutenberg-basics/tree/1.0.1) (2018-09-22)
+# [1.0.1](https://github.com/cyrale/gutenberg-basics/tree/1.0.1) (2018-09-22)
 
 * Improve functioning
 
 <a name="1.0.0"></a>
-# [1.0.0 ](https://github.com/cyrale/gutenberg-basics/tree/1.0.0) (2018-09-22)
+# [1.0.0](https://github.com/cyrale/gutenberg-basics/tree/1.0.0) (2018-09-22)
 
 First Release
