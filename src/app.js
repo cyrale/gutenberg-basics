@@ -9,6 +9,7 @@ const { unregisterBlockType, getBlockTypes } = wp.blocks;
  */
 import { default as HeadingEdit } from './overrides/heading-edit';
 import { default as ParagraphEdit } from './overrides/paragraph-edit';
+import { default as ButtonEdit } from './overrides/button-edit';
 
 window.onload = () => {
 	const { whitelistedBlocks } = gutenbergBasicsSettings;
@@ -35,10 +36,12 @@ addFilter( 'blocks.registerBlockType', 'gutenberg-basics/remove-html-supports', 
 
 addFilter( 'editor.BlockEdit', 'gutenberg-basics/overrides', BlockEdit => {
 	return props => {
-		if ( 'core/paragraph' === props.name ) {
-			return <ParagraphEdit { ...props } />;
-		} else if ( 'core/heading' === props.name ) {
+		if ( 'core/heading' === props.name ) {
 			return <HeadingEdit { ...props } />;
+		} else if ( 'core/paragraph' === props.name ) {
+			return <ParagraphEdit { ...props } />;
+		} else if ( 'core/button' === props.name ) {
+			return <ButtonEdit { ...props } />;
 		}
 
 		return <BlockEdit { ...props } />;
