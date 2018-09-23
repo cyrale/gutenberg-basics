@@ -116,7 +116,7 @@ class GB_Block_Settings {
 			'core/video',
 		];
 
-		return array_unique( array_merge( $allowed_blocks, $default_wp_blocks ) );
+		return array_values( array_unique( array_merge( $allowed_blocks, $default_wp_blocks ) ) );
 	}
 
 	/**
@@ -125,10 +125,9 @@ class GB_Block_Settings {
 	 * @return array
 	 */
 	public function default_blocks() {
-	$blocks = apply_filters(
+		$blocks = apply_filters(
 			'gutenberg_basics_default_blocks',
 			[
-				'core/gallery',
 				'core/paragraph',
 				'core/image',
 				'core/heading',
@@ -137,7 +136,6 @@ class GB_Block_Settings {
 				'core/button',
 				'core/columns',
 				'core/column',
-				'core/embed',
 				'core-embed/youtube',
 				'core-embed/vimeo',
 				'core-embed/dailymotion',
@@ -146,7 +144,7 @@ class GB_Block_Settings {
 				'core/text-columns',
 				'core/separator', // DON'T REMOVE THIS!
 			]
-			);
+		);
 
 		foreach ( [ 'core/paragraph', 'core/heading', 'core/separator', 'core/column' ] as $mandatory_block ) {
 			if ( ! in_array( $mandatory_block, $blocks, true ) ) {
@@ -154,7 +152,7 @@ class GB_Block_Settings {
 			}
 		}
 
-		return $blocks;
+		return array_values( $blocks );
 	}
 
 	/**
@@ -163,11 +161,11 @@ class GB_Block_Settings {
 	 * @return array
 	 */
 	public function default_blocks_per_post_types() {
-	$post_types = get_post_types(
+		$post_types = get_post_types(
 			[
 				'show_in_rest' => true,
 			]
-			);
+		);
 
 		$default_blocks      = [];
 		$excluded_post_types = apply_filters( 'gutenberg_basics_excluded_post_types', [ 'attachment', 'wp_block' ] );
@@ -180,7 +178,9 @@ class GB_Block_Settings {
 			$default_blocks[ $post_type ] = apply_filters(
 				"gutenberg_basics_default_blocks_{$post_type}",
 				$this->default_blocks()
-				);
+			);
+
+			$default_blocks[ $post_type ] = array_values( $default_blocks[ $post_type ] );
 		}
 
 		return $default_blocks;
@@ -192,6 +192,6 @@ class GB_Block_Settings {
 	 * @return array
 	 */
 	public function get_headings() {
-		return apply_filters( 'gutenberg_basics_headings', [ 'h2', 'h3' ] );
+		return array_values( apply_filters( 'gutenberg_basics_headings', [ 'h2', 'h3' ] ) );
 	}
 }
