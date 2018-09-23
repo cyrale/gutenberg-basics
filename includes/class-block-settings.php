@@ -146,7 +146,17 @@ class GB_Block_Settings {
 			]
 		);
 
-		foreach ( [ 'core/paragraph', 'core/heading', 'core/separator', 'core/column' ] as $mandatory_block ) {
+		$mandatory_blocks = [
+			'core/heading',
+			'core/paragraph',
+			'core/image',
+			'core/quote',
+			'core/separator',
+			'core/columns',
+			'core/column',
+		];
+
+		foreach ( $mandatory_blocks as $mandatory_block ) {
 			if ( ! in_array( $mandatory_block, $blocks, true ) ) {
 				$blocks[] = $mandatory_block;
 			}
