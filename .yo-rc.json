@@ -1,12 +1,12 @@
 {
   "generator-plugin-wp": {
     "name": "Gutenberg Basics",
-    "homepage": "https://webdevstudios.com",
+    "homepage": "https://github.com/cyrale/gutenberg-basics",
     "description": "Modifications on Gutenberg.",
     "version": "1.0.0",
     "author": "Cyrale",
     "authoremail": "cyril@jacquesson.me",
-    "authorurl": "https://webdevstudios.com",
+    "authorurl": "https://github.com/cyrale",
     "license": "GPLv2",
     "slug": "gutenberg-basics",
     "classname": "Gutenberg_Basics",
