@@ -3,7 +3,7 @@
  * Plugin Name: Gutenberg Basics
  * Plugin URI:  https://github.com/cyrale/gutenberg-basics
  * Description: Modifications on Gutenberg.
- * Version:     1.1.0
+ * Version:     1.0.0
  * Author:      Cyrale
  * License:     GPL2
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -35,7 +35,7 @@
  */
 
 // Use composer autoload.
-if ( ! class_exists( 'Puc_v4_Factory' ) ) {
+if ( ! class_exists( 'Puc_v4_Factory' ) && file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
 	require_once __DIR__ . '/vendor/autoload.php';
 }
 
