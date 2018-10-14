@@ -6,12 +6,14 @@
  * @package Gutenberg_Basics
  */
 
+namespace Gutenberg_Basics;
+
 /**
  * Gutenberg Basics Admin.
  *
  * @since 1.0.0
  */
-class GB_Admin {
+class Admin {
 
 	/**
 	 * Parent plugin class.

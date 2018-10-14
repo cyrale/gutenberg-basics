@@ -6,12 +6,14 @@
  * @package Gutenberg_Basics
  */
 
+namespace Gutenberg_Basics;
+
 /**
  * Gutenberg Basics Block Settings.
  *
  * @since 1.0.0
  */
-class GB_Block_Settings {
+class Block_Settings {
 
 	/**
 	 * Parent plugin class.

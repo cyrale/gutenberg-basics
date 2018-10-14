@@ -39,8 +39,7 @@ if ( ! class_exists( 'Puc_v4_Factory' ) ) {
 	require_once __DIR__ . '/vendor/autoload.php';
 }
 
-require_once __DIR__ . '/includes/class-admin.php';
-require_once __DIR__ . '/includes/class-block-settings.php';
+require_once __DIR__ . '/autoload.php';
 
 /**
  * Main initiation class.
@@ -100,34 +99,18 @@ final class Gutenberg_Basics {
 	/**
 	 * Instance of CG_Admin
 	 *
-	 * @since0.0.0
-	 * @var CG_Admin
+	 * @since 1.0.0
+	 * @var Gutenberg_Basics\Admin
 	 */
 	protected $admin;
 
 	/**
-	 * Instance of CG_Public
-	 *
-	 * @since0.0.0
-	 * @var CG_Public
-	 */
-	protected $public;
-
-	/**
 	 * Instance of CG_Block_Settings
 	 *
-	 * @since0.0.0
-	 * @var CG_Block_Settings
+	 * @since 1.0.0
+	 * @var Gutenberg_Basics\Block_Settings
 	 */
 	protected $block_settings;
-
-	/**
-	 * Instance of CG_Block_Colors
-	 *
-	 * @since0.0.0
-	 * @var CG_Block_Colors
-	 */
-	protected $block_colors;
 
 	/**
 	 * Creates or returns an instance of this class.
@@ -153,7 +136,7 @@ final class Gutenberg_Basics {
 		$this->url      = plugin_dir_url( __FILE__ );
 		$this->path     = plugin_dir_path( __FILE__ );
 
-		$this->block_settings = new GB_Block_Settings( $this );
+		$this->block_settings = new Gutenberg_Basics\Block_Settings( $this );
 	}
 
 	/**
@@ -162,7 +145,7 @@ final class Gutenberg_Basics {
 	 * @since  1.0.0
 	 */
 	public function plugin_classes() {
-		$this->admin = new GB_Admin( $this );
+		$this->admin = new Gutenberg_Basics\Admin( $this );
 	} // END OF PLUGIN CLASSES FUNCTION
 
 	/**
