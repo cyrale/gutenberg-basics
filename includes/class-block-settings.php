@@ -142,7 +142,7 @@ class GB_Block_Settings {
 				'core/block',
 				'core/table',
 				'core/text-columns',
-				'core/separator', // DON'T REMOVE THIS!
+				'core/separator',
 			]
 		);
 
