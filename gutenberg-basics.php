@@ -39,6 +39,9 @@ if ( ! class_exists( 'Puc_v4_Factory' ) ) {
 	require_once __DIR__ . '/vendor/autoload.php';
 }
 
+require_once __DIR__ . '/includes/class-admin.php';
+require_once __DIR__ . '/includes/class-block-settings.php';
+
 /**
  * Main initiation class.
  *
