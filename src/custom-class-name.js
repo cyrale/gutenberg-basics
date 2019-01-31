@@ -1,9 +1,10 @@
 /**
  * External dependencies
  */
-import assign from 'lodash/assign';
-import difference from 'lodash/difference';
-import omit from 'lodash/omit';
+const assign = window.lodash.assign;
+const difference = window.lodash.difference;
+const omit = window.lodash.omit;
+
 import classnames from 'classnames/dedupe';
 
 /**

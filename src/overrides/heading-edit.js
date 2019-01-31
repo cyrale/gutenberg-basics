@@ -1,7 +1,7 @@
 /**
  * External dependencies
  */
-import range from "lodash/range";
+const range = window.lodash.range;
 
 /**
  * WordPress dependencies
