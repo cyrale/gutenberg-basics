@@ -3,7 +3,7 @@
  * Plugin Name: Gutenberg Basics
  * Plugin URI:  https://github.com/cyrale/gutenberg-basics
  * Description: Modifications on Gutenberg.
- * Version:     1.0.0
+ * Version:     1.1.0
  * Author:      Cyrale
  * License:     GPL2
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -54,7 +54,7 @@ final class Gutenberg_Basics {
 	 * @var    string
 	 * @since  1.0.0
 	 */
-	const VERSION = '1.0.0';
+	const VERSION = '1.1.0';
 
 	/**
 	 * URL of plugin directory.
