@@ -23,7 +23,7 @@ const { createBlock } = wp.blocks;
 
 const name = 'core/paragraph';
 
-export default class SevanovaParagraphEdit extends Component {
+export default class ParagraphEdit extends Component {
 	constructor() {
 		super(...arguments);
 

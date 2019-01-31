@@ -31,7 +31,7 @@ export default function HeadingEdit ({
 										 onReplace,
 									 }) {
 	const {align, content, level, placeholder, className} = attributes;
-	const {headings} = sevanovaGutenbergSettings;
+	const {headings} = gutenbergBasicsSettings;
 
 	const levels = headings.map((level) => Number(level.substr(1))).sort();
 	const tagName = "h" + level;

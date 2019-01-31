@@ -33,12 +33,12 @@ import {
 /**
  * Overrides of WP blocks
  */
-import {default as SevanovaHeadingEdit} from './overrides/heading-edit';
-import {default as SevanovaParagraphEdit} from './overrides/paragraph-edit';
-import {default as SevanovaButtonEdit} from './overrides/button-edit';
+import {default as HeadingEdit} from './overrides/heading-edit';
+import {default as ParagraphEdit} from './overrides/paragraph-edit';
+import {default as ButtonEdit} from './overrides/button-edit';
 
 window.onload = () => {
-	const {whitelistedBlocks} = sevanovaGutenbergSettings;
+	const {whitelistedBlocks} = gutenbergBasicsSettings;
 	const posttype = wp.data.select('core/editor').getCurrentPost().type;
 
 	if (whitelistedBlocks[posttype] !== undefined) {
@@ -52,7 +52,7 @@ window.onload = () => {
 
 addFilter(
 	'blocks.registerBlockType',
-	'sevanova-gutenberg/remove-html-supports',
+	'gutenberg-basics/remove-html-supports',
 	settings => {
 		return assign({}, settings, {
 			supports: assign({}, settings.supports, {
@@ -65,7 +65,7 @@ addFilter(
 
 addFilter(
 	'blocks.registerBlockType',
-	'sevanova-gutenberg/add-class-names',
+	'gutenberg-basics/add-class-names',
 	settings => {
 		return assign({}, settings, {
 			supports: assign({}, settings.supports, {
@@ -79,7 +79,7 @@ addFilter(
 // Overrides headings
 addFilter(
 	'editor.BlockEdit',
-	'sevanova-gutenberg/override-heading',
+	'gutenberg-basics/override-heading',
 	(BlockEdit) => {
 		return (props) => {
 			if ('core/heading' !== props.name) {
@@ -87,7 +87,7 @@ addFilter(
 			}
 
 			return (
-				<SevanovaHeadingEdit {...props} />
+				<HeadingEdit {...props} />
 			);
 		};
 	}
@@ -96,7 +96,7 @@ addFilter(
 // Overrides paragraph
 addFilter(
 	'editor.BlockEdit',
-	'sevanova-gutenberg/override-paragraph',
+	'gutenberg-basics/override-paragraph',
 	(BlockEdit) => {
 		return (props) => {
 			if ('core/paragraph' !== props.name) {
@@ -104,7 +104,7 @@ addFilter(
 			}
 
 			return (
-				<SevanovaParagraphEdit {...props} />
+				<ParagraphEdit {...props} />
 			);
 		};
 	}
@@ -113,7 +113,7 @@ addFilter(
 // Overrides button
 addFilter(
 	'editor.BlockEdit',
-	'sevanova-gutenberg/override-button',
+	'gutenberg-basics/override-button',
 	(BlockEdit) => {
 		return (props) => {
 			if ('core/button' !== props.name) {
@@ -121,20 +121,20 @@ addFilter(
 			}
 
 			return (
-				<SevanovaButtonEdit {...props} />
+				<ButtonEdit {...props} />
 			);
 		};
 	}
 );
 
 // Re-add anchor settings
-addFilter( 'blocks.registerBlockType', 'sevanova-gutenberg/anchor/attribute', anchorAddAttribute );
-addFilter( 'editor.BlockEdit', 'sevanova-gutenberg/editor/anchor/with-inspector-control', anchorWithInspectorControl );
-addFilter( 'blocks.getSaveContent.extraProps', 'sevanova-gutenberg/anchor/save-props', anchorAddSaveProps );
+addFilter( 'blocks.registerBlockType', 'gutenberg-basics/anchor/attribute', anchorAddAttribute );
+addFilter( 'editor.BlockEdit', 'gutenberg-basics/editor/anchor/with-inspector-control', anchorWithInspectorControl );
+addFilter( 'blocks.getSaveContent.extraProps', 'gutenberg-basics/anchor/save-props', anchorAddSaveProps );
 
 // Re-add additional CSS settings
-addFilter( 'blocks.registerBlockType', 'sevanova-gutenberg/custom-class-name/attribute', classAddAttribute );
-addFilter( 'editor.BlockEdit', 'sevanova-gutenberg/editor/custom-class-name/with-inspector-control', classWithInspectorControl );
-addFilter( 'blocks.getSaveContent.extraProps', 'sevanova-gutenberg/custom-class-name/save-props', classAddSaveProps );
-addFilter( 'blocks.getBlockAttributes', 'sevanova-gutenberg/custom-class-name/addParsedDifference', classAddParsedDifference );
+addFilter( 'blocks.registerBlockType', 'gutenberg-basics/custom-class-name/attribute', classAddAttribute );
+addFilter( 'editor.BlockEdit', 'gutenberg-basics/editor/custom-class-name/with-inspector-control', classWithInspectorControl );
+addFilter( 'blocks.getSaveContent.extraProps', 'gutenberg-basics/custom-class-name/save-props', classAddSaveProps );
+addFilter( 'blocks.getBlockAttributes', 'gutenberg-basics/custom-class-name/addParsedDifference', classAddParsedDifference );
 
