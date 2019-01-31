@@ -1,16 +1,40 @@
 /**
- * WordPress dependencies
- */
-const { __ } = wp.i18n;
-const { Component, Fragment } = wp.element;
-const { compose } = wp.compose;
-const { Dashicon, IconButton } = wp.components;
-const { URLInput, RichText, InspectorControls, withColors, PanelColorSettings } = wp.editor;
-
-/**
  * External dependencies
  */
 import classnames from 'classnames';
+
+/**
+ * WordPress dependencies
+ */
+const { __ } = wp.i18n;
+const {
+	Component,
+	Fragment,
+} = wp.element;
+const { compose } = wp.compose;
+const {
+	Dashicon,
+	IconButton,
+	withFallbackStyles,
+} = wp.components;
+const {
+	URLInput,
+	RichText,
+	InspectorControls,
+	withColors,
+	PanelColorSettings,
+} = wp.editor;
+
+const { getComputedStyle } = window;
+
+const applyFallbackStyles = withFallbackStyles( ( node, ownProps ) => {
+	const { backgroundColor } = ownProps;
+	const backgroundColorValue = backgroundColor && backgroundColor.color;
+	//avoid the use of querySelector if textColor color is known and verify if node is available.
+	return {
+		fallbackBackgroundColor: backgroundColorValue || ! node ? undefined : getComputedStyle( node ).backgroundColor,
+	};
+} );
 
 class ButtonEdit extends Component {
 	constructor() {
@@ -30,9 +54,7 @@ class ButtonEdit extends Component {
 		const {
 			attributes,
 			backgroundColor,
-			textColor,
 			setBackgroundColor,
-			setTextColor,
 			setAttributes,
 			isSelected,
 		} = this.props;
@@ -41,11 +63,16 @@ class ButtonEdit extends Component {
 			text,
 			url,
 			title,
+			className,
 		} = attributes;
 
 		return (
 			<Fragment>
-				<div className={ 'wp-block-button' } title={ title } ref={ this.bindRef }>
+				<div
+					className={ classnames( 'wp-block-button', className ) }
+					title={ title }
+					ref={ this.bindRef }
+				>
 					<RichText
 						placeholder={ __( 'Add text…' ) }
 						value={ text }
@@ -55,13 +82,10 @@ class ButtonEdit extends Component {
 							'wp-block-button__link', {
 								'has-background': backgroundColor.color,
 								[ backgroundColor.class ]: backgroundColor.class,
-								'has-text-color': textColor.color,
-								[ textColor.class ]: textColor.class,
 							}
 						) }
 						style={ {
 							backgroundColor: backgroundColor.color,
-							color: textColor.color,
 						} }
 						keepPlaceholderOnFocus
 					/>
@@ -96,5 +120,6 @@ class ButtonEdit extends Component {
 }
 
 export default compose( [
-	withColors( 'backgroundColor', { textColor: 'color' } ),
+	withColors( 'backgroundColor' ),
+	applyFallbackStyles,
 ] )( ButtonEdit );

@@ -49,6 +49,17 @@ class Admin {
 	 * Enqueue scripts and styles.
 	 */
 	public function enqueue_block_editor_assets() {
+		$default_blocks = $this->plugin->block_settings->default_blocks_per_post_types();
+		$current_screen = get_current_screen();
+
+		if ( !empty( $current_screen )
+			 && $current_screen->base === 'post'
+			 && ! empty( $default_blocks[ $current_screen->post_type ] )
+			 && ! in_array( 'formidable/simple-form', $default_blocks[ $current_screen->post_type ], true )
+		) {
+			remove_action( 'enqueue_block_editor_assets', 'FrmSimpleBlocksController::block_editor_assets' );
+		}
+
 		wp_enqueue_script(
 			'gutenberg-basics',
 			$this->plugin->url . 'dist/js/app.js',
@@ -60,7 +71,7 @@ class Admin {
 			'gutenberg-basics',
 			'gutenbergBasicsSettings',
 			[
-				'whitelistedBlocks' => $this->plugin->block_settings->default_blocks_per_post_types(),
+				'whitelistedBlocks' => $default_blocks,
 				'headings'          => $this->plugin->block_settings->get_headings(),
 			]
 		);

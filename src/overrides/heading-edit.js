@@ -1,77 +1,80 @@
 /**
+ * External dependencies
+ */
+import range from "lodash/range";
+
+/**
  * WordPress dependencies
  */
-const { __, sprintf } = wp.i18n;
-const { Component, Fragment } = wp.element;
-const { PanelBody, Toolbar } = wp.components;
-const { createBlock } = wp.blocks;
-const { RichText, BlockControls, InspectorControls, AlignmentToolbar } = wp.editor;
+const {__} = wp.i18n;
+const {Fragment} = wp.element;
+const {PanelBody, Toolbar} = wp.components;
+const {createBlock} = wp.blocks;
+const {RichText, BlockControls, InspectorControls} = wp.editor;
 
-export default class HeadingEdit extends Component {
-	static getDerivedStateFromProps( props, state ) {
-		if ( props.attributes.nodeName === undefined ) {
-			props.attributes.nodeName = gutenbergBasicsSettings.headings[ 0 ].toUpperCase();
-		}
+const createLevelControl = (targetLevel, selectedLevel, onChange) => {
+	return {
+		icon: "heading",
+		// translators: %s: heading level e.g: "1", "2", "3"
+		title: sprintf(__("Heading %d"), targetLevel),
+		isActive: targetLevel === selectedLevel,
+		onClick: () => onChange(targetLevel),
+		subscript: String(targetLevel),
+	};
+};
 
-		return state;
-	}
+export default function HeadingEdit ({
+										 attributes,
+										 setAttributes,
+										 mergeBlocks,
+										 insertBlocksAfter,
+										 onReplace,
+									 }) {
+	const {align, content, level, placeholder, className} = attributes;
+	const {headings} = sevanovaGutenbergSettings;
 
-	render() {
-		const { attributes, setAttributes, mergeBlocks, insertBlocksAfter, onReplace, className } = this.props;
-		const { align, content, level, placeholder } = attributes;
-		const { headings } = gutenbergBasicsSettings;
+	const levels = headings.map((level) => Number(level.substr(1))).sort();
+	const tagName = "h" + level;
 
-		const levels = headings.map( targetLevel => Number( targetLevel.substr( 1 ) ) );
-		const tagName = 'h' + level;
+	const onChange = (newLevel) => setAttributes({level: newLevel});
+	const toolbar = (
+		<Toolbar controls={range(levels[0], levels[levels.length - 1] + 1).map((index) => createLevelControl(index, level, onChange))}/>
+	);
 
-		const toolbar = (
-			<Toolbar
-				controls={ levels.map( targetLevel => ( {
-					icon: 'heading',
-					title: sprintf( __( 'Heading %s' ), targetLevel ),
-					isActive: targetLevel === level,
-					onClick: () => setAttributes( { level: targetLevel } ),
-					subscript: targetLevel,
-				} ) ) }
+	return (
+		<Fragment>
+			<BlockControls>
+				{toolbar}
+			</BlockControls>
+			<InspectorControls>
+				<PanelBody title={__("Heading Settings")}>
+					<p>{__("Level")}</p>
+					{toolbar}
+				</PanelBody>
+			</InspectorControls>
+			<RichText
+				identifier="content"
+				wrapperClassName="wp-block-heading"
+				tagName={tagName}
+				value={content}
+				onChange={(value) => setAttributes({content: value})}
+				onMerge={mergeBlocks}
+				unstableOnSplit={
+					insertBlocksAfter ?
+						(before, after, ...blocks) => {
+							setAttributes({content: before});
+							insertBlocksAfter([
+								...blocks,
+								createBlock("core/paragraph", {content: after}),
+							]);
+						} :
+						undefined
+				}
+				onRemove={() => onReplace([])}
+				style={{textAlign: align}}
+				className={className}
+				placeholder={placeholder || __("Write heading…")}
 			/>
-		);
-
-		return (
-			<Fragment>
-				<BlockControls>{ toolbar }</BlockControls>
-				<InspectorControls>
-					<PanelBody title={ __( 'Heading Settings' ) }>
-						<p>{ __( 'Level' ) }</p>
-						{ toolbar }
-						<p>{ __( 'Text Alignment' ) }</p>
-						<AlignmentToolbar
-							value={ align }
-							onChange={ nextAlign => {
-								setAttributes( { align: nextAlign } );
-							} }
-						/>
-					</PanelBody>
-				</InspectorControls>
-				<RichText
-					wrapperClassName="wp-block-heading"
-					tagName={ tagName }
-					value={ content }
-					onChange={ value => setAttributes( { content: value } ) }
-					onMerge={ mergeBlocks }
-					onSplit={
-						insertBlocksAfter ?
-							( before, after, ...blocks ) => {
-								setAttributes( { content: before } );
-								insertBlocksAfter( [ ...blocks, createBlock( 'core/paragraph', { content: after } ) ] );
-							} :
-							undefined
-					}
-					onRemove={ () => onReplace( [] ) }
-					style={ { textAlign: align } }
-					className={ className }
-					placeholder={ placeholder || __( 'Write heading…' ) }
-				/>
-			</Fragment>
-		);
-	}
+		</Fragment>
+	);
 }

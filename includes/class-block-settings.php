@@ -151,10 +151,7 @@ class Block_Settings {
 		$mandatory_blocks = [
 			'core/heading',
 			'core/paragraph',
-			'core/image',
-			'core/quote',
 			'core/separator',
-			'core/columns',
 			'core/column',
 		];
 
